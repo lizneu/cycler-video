@@ -36,10 +36,36 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-      var mistakeTimes = [15, 25, 33],
-          buffer = 1,
-          totalClicks = 0,
-          numCorrectClicks = 0;
+      var mistakeTimesOrig = [
+          12,  // incorrect hand wash
+          36,  // didn't check pdf
+          40,  // touched non sterile area
+          47,  // didn't check pdf
+          54,  // touched non sterile area
+          72,  // touched non sterile area
+          147, // touched non sterile area
+          148, // incorrect hand rub
+          151, // touched non sterile area
+          164, // touched non sterile area
+          176, // touched cycler
+          206, // touched cycle tubing
+          230, // touched bag
+          265, // mask below nose
+          279, // touched non sterile area
+          286, // Incorrect Alcavis rub
+          293, // Touched transfer set
+          294, // Dropped transfer set
+          325, // Incorrect hand wash and washed hands before putting mask on
+          343, // Touched non sterile area
+          347, // Mini cap fell out of package
+          356, // 4x4s on counter
+          375, // Incorrect Alcavis scrub
+          381, // Touch
+        ],
+        mistakeTimes = mistakeTimesOrig.slice(),
+        buffer = 2,
+        totalClicks = 0,
+        numCorrectClicks = 0;
 
       var printTime = function() {
         var text = $('#video').prop('currentTime');
@@ -52,9 +78,10 @@
         var i;
         for (i = 0; i < mistakeTimes.length; i++) {
           mistakeTime = mistakeTimes[i];
-          if (time >= mistakeTime - buffer &&
+          if (time >= mistakeTime &&
               time <= mistakeTime + buffer) {
             numCorrectClicks++;
+            mistakeTimes.splice(i, 1);
             correct = true;
             break;
           }
