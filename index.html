@@ -37,30 +37,30 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script type="text/javascript">
       var mistakeTimesOrig = [
-          12,  // incorrect hand wash
-          36,  // didn't check pdf
-          40,  // touched non sterile area
-          47,  // didn't check pdf
-          54,  // touched non sterile area
-          72,  // touched non sterile area
-          147, // touched non sterile area
-          148, // incorrect hand rub
-          151, // touched non sterile area
-          164, // touched non sterile area
-          176, // touched cycler
-          206, // touched cycle tubing
-          230, // touched bag
-          265, // mask below nose
-          279, // touched non sterile area
-          286, // Incorrect Alcavis rub
-          293, // Touched transfer set
-          294, // Dropped transfer set
-          325, // Incorrect hand wash and washed hands before putting mask on
-          343, // Touched non sterile area
-          347, // Mini cap fell out of package
-          356, // 4x4s on counter
-          375, // Incorrect Alcavis scrub
-          381, // Touch
+          {start: 12, end: 21},   // incorrect hand wash
+          {start: 36},            // didn't check pdf
+          {start: 40},            // touched non sterile area
+          {start: 47},            // didn't check pdf
+          {start: 54},            // touched non sterile area
+          {start: 72},            // touched non sterile area
+          {start: 147},           // touched non sterile area
+          {start: 148, end: 153}, // incorrect hand rub
+          {start: 151},           // touched non sterile area
+          {start: 164},           // touched non sterile area
+          {start: 176},           // touched cycler
+          {start: 206},           // touched cycle tubing
+          {start: 230},           // touched bag
+          {start: 265, end: 280}, // mask below nose
+          {start: 279},           // touched non sterile area
+          {start: 286},           // Incorrect Alcavis rub
+          {start: 293},           // Touched transfer set
+          {start: 294},           // Dropped transfer set
+          {start: 325, end: 335}, // Incorrect hand wash and washed hands before putting mask on
+          {start: 343},           // Touched non sterile area
+          {start: 347},           // Mini cap fell out of package
+          {start: 356},           // 4x4s on counter
+          {start: 375},           // Incorrect Alcavis scrub
+          {start: 381}            // Touch
         ],
         mistakeTimes = mistakeTimesOrig.slice(),
         buffer = 2,
@@ -77,9 +77,12 @@
         var correct = false;
         var i;
         for (i = 0; i < mistakeTimes.length; i++) {
-          mistakeTime = mistakeTimes[i];
-          if (time >= mistakeTime &&
-              time <= mistakeTime + buffer) {
+          var mistake = mistakeTimes[i],
+              mistakeStart = mistake.start,
+              mistakeEnd = mistake.end || (mistakeStart + buffer);
+
+          if (time >= mistakeStart &&
+              time <= mistakeEnd) {
             numCorrectClicks++;
             mistakeTimes.splice(i, 1);
             correct = true;
