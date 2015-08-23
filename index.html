@@ -41,33 +41,29 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script type="text/javascript">
       var mistakeTimesOrig = [
-          {start: 12, end: 21},   // incorrect hand wash
-          {start: 36},            // didn't check pdf
-          {start: 40},            // touched non sterile area
-          {start: 47},            // didn't check pdf
-          {start: 54},            // touched non sterile area
-          {start: 72},            // touched non sterile area
-          {start: 147},           // touched non sterile area
-          {start: 148, end: 153}, // incorrect hand rub
-          {start: 151},           // touched non sterile area
-          {start: 164},           // touched non sterile area
-          {start: 176},           // touched cycler
-          {start: 206},           // touched cycle tubing
-          {start: 230},           // touched bag
-          {start: 265, end: 280}, // mask below nose
-          {start: 279},           // touched non sterile area
-          {start: 286},           // Incorrect Alcavis rub
-          {start: 293},           // Touched transfer set
-          {start: 294},           // Dropped transfer set
-          {start: 325, end: 335}, // Incorrect hand wash and washed hands before putting mask on
-          {start: 343},           // Touched non sterile area
-          {start: 347},           // Mini cap fell out of package
-          {start: 356},           // 4x4s on counter
-          {start: 375},           // Incorrect Alcavis scrub
-          {start: 381}            // Touch
+          {start: 18, end: 27},   // incorrect hand wash
+          {start: 40, end: 46},   // didn't check pdf
+          {start: 43, end: 45},   // touched non sterile area
+          {start: 50, end: 57},   // didn't check pdf
+          {start: 58},            // touched non sterile area
+          {start: 154, end: 158}, // incorrect hand rub
+          {start: 155},           // touched non sterile area
+          {start: 165, end: 170}, // mask below nose
+          {start: 180, end: 205}, // touched non sterile area
+          {start: 210, end: 228}, // bag connect
+          {start: 234, end: 239}, // bag connect
+          {start: 265, end: 285}, // mask below nose
+          {start: 290, end: 294}, // Alcavis scrub
+          {start: 296, end: 305}, // connecting pt
+          {start: 330, end: 340}, // incorrect hand wash
+          {start: 343, end: 346}, // mask below nose
+          {start: 350, end: 357}, // mini-cap
+          {start: 356, end: 367}, // Alcavis scrub
+          {start: 377, end: 381}, // Alcavis scrub
+          {start: 384, end: 388}, // disconnecting pt
         ],
         mistakeTimes = mistakeTimesOrig.slice(),
-        buffer = 2,
+        buffer = 1,
         totalClicks = 0,
         numCorrectClicks = 0;
 
